@@ -13,6 +13,28 @@ You type a door. Agents explore the product in a real browser, plan, write, revi
 | `/fix-tests [run]` | a run is red, locally or on CI | the cause fixed and proven, or a bug written |
 | `/explore-product [area]` | coverage is unknown | gaps by risk, with candidate criteria |
 
+## How `/init-project` runs
+
+```mermaid
+flowchart LR
+  H([you]) -->|empty folder| M[master session]
+  M -->|round one: five questions| H
+  H -->|answers| M
+  M -->|looks up facts: test id attribute, cores, remote, reachability| M
+  M -->|round two: defaults table| H
+  H -->|defaults, or changes| M
+  M -->|settled view| H
+  H -->|confirm| M
+  M -->|generate, .env by you, login page, bootstrap| M
+  M -->|scaffold pushed, ruleset, CI run| H
+```
+
+- **Round one** asks what nobody can look up: the target, the environments, the accounts, where the code lives, the main branch.
+- **Facts** are read, never asked: the test id attribute from the page, the workers from your cores, the remote, whether the site answers.
+- **Round two** is one table of defaults, accepted with `defaults` or changed by row number.
+- **The settled view** shows three small tables and what will happen; you confirm once.
+- **Then it builds**: the project from the template, the login page object from a snapshot, the gates run, the scaffold pushed to `main`, branches protected, CI run once.
+
 ## How `/add-tests` runs
 
 ```mermaid
