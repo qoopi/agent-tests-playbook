@@ -3,8 +3,8 @@ node_modules/
 
 # playwright output: reports, traces, results and the saved session
 .playwright/
-# console logs and snapshots of the MCP browser tools; Playwright fixes the name, nothing reads them
-.playwright-mcp/
+# the MCP browser tools' fixed output name; bootstrap links it into .playwright/mcp
+.playwright-mcp
 
 # secrets: the example file is the only env file committed
 .env
