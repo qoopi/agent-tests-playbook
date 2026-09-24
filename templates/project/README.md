@@ -4,17 +4,17 @@ End-to-end tests for {{R1.product}}, written in Playwright and TypeScript. Tests
 
 ## Tech stack
 
-| Tool | Role |
-| --- | --- |
-| Playwright {{F7.playwright}} | test runner, browsers, tracing, reports |
-| TypeScript {{F7.typescript}}, strict | page objects, fixtures, data, specs |
-| {{D6.name}} | package manager and script runner; tests run under Node |
-| ESLint with typescript-eslint and eslint-plugin-playwright | type-aware lint; raw locators warn, waits and skips error |
-| Prettier | formatting, checked in the gate |
-| dotenv | `.env` into `playwright.config.ts`, the only place that reads it |
-| GitHub Actions | `pr.yml` on pull requests, `nightly.yml` on schedule and release branches |
-| Playwright test MCP server | the browser the agents explore and debug with, started from `.mcp.json` |
-| agent-tests-playbook | doors, agents and rules for the session |
+| Tool                                                       | Role                                                                      |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Playwright {{F7.playwright}}                               | test runner, browsers, tracing, reports                                   |
+| TypeScript {{F7.typescript}}, strict                       | page objects, fixtures, data, specs                                       |
+| {{D6.name}}                                                | package manager and script runner; tests run under Node                   |
+| ESLint with typescript-eslint and eslint-plugin-playwright | type-aware lint; raw locators warn, waits and skips error                 |
+| Prettier                                                   | formatting, checked in the gate                                           |
+| dotenv                                                     | `.env` into `playwright.config.ts`, the only place that reads it          |
+| GitHub Actions                                             | `pr.yml` on pull requests, `nightly.yml` on schedule and release branches |
+| Playwright test MCP server                                 | the browser the agents explore and debug with, started from `.mcp.json`   |
+| agent-tests-playbook                                       | doors, agents and rules for the session                                   |
 
 Browsers: {{D7.browsers}}. Test id attribute: `{{F1.attribute}}`.
 
@@ -43,26 +43,26 @@ playwright.config.ts       environments, tags, login, browsers, runner: every ti
 
 **Run tests.**
 
-| Want | Type |
-| --- | --- |
-| typecheck, lint and formatting | `{{D6.run}} check` |
-| the current environment's tags | `{{D6.run}} test` |
-| every level tag | `{{D6.run}} test:all` |
-| one level | `{{D6.run}} test:smoke`, `{{D6.run}} test:regression` |
-| one area | {{D9.readme_scripts}} |
-| one spec or one test | `{{D6.run}} test:all tests/<area>/<spec>.ts -g "<test title>"` |
-| watch it | `{{D6.run}} test:headed`, `{{D6.run}} test:ui`, `{{D6.run}} test:debug` |
-| the last report | `{{D6.run}} report` |
+| Want                           | Type                                                                    |
+| ------------------------------ | ----------------------------------------------------------------------- |
+| typecheck, lint and formatting | `{{D6.run}} check`                                                      |
+| the current environment's tags | `{{D6.run}} test`                                                       |
+| every level tag                | `{{D6.run}} test:all`                                                   |
+| one level                      | `{{D6.run}} test:smoke`, `{{D6.run}} test:regression`                   |
+| one area                       | {{D9.readme_scripts}}                                                   |
+| one spec or one test           | `{{D6.run}} test:all tests/<area>/<spec>.ts -g "<test title>"`          |
+| watch it                       | `{{D6.run}} test:headed`, `{{D6.run}} test:ui`, `{{D6.run}} test:debug` |
+| the last report                | `{{D6.run}} report`                                                     |
 
 Any script takes Playwright flags after it. The scripts set `TAGS`; a `--grep` on the command line is combined with the environment's tags, so use the scripts to choose tags.
 
 **Add, fix, explore.** Start Claude Code here with the plugin, `claude --plugin-dir <path to agent-tests-playbook>`, then type a door:
 
-| Door | Type it when | You decide |
-| --- | --- | --- |
-| `/add-tests <task>` | a task needs tests | after the plan, and on the done card |
-| `/fix-tests [run or spec]` | a run is red, locally or on CI | on the done card |
-| `/explore-product [area]` | coverage is unknown | on the done card |
+| Door                       | Type it when                   | You decide                           |
+| -------------------------- | ------------------------------ | ------------------------------------ |
+| `/add-tests <task>`        | a task needs tests             | after the plan, and on the done card |
+| `/fix-tests [run or spec]` | a run is red, locally or on CI | on the done card                     |
+| `/explore-product [area]`  | coverage is unknown            | on the done card                     |
 
 **Ship.** Say the tests are reviewed and ask to commit, push or ship; the session follows the Ship steps of `CLAUDE.md`: gates, `feature/<name>` branch, commit with plan ids, pull request with the evidence table, CI watched.
 
