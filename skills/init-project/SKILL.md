@@ -11,7 +11,7 @@ Turn an empty folder into a runnable test project with the playbook wired in. Th
 
 ## Steps
 
-1. **Preflight.** Run `bun --version`, `node --version`, `git --version`, `gh auth status`, and list the folder. Done when all four answer and the folder lists nothing but editor folders such as `.idea`. Otherwise stop and name what is missing; adopting a project with files is not supported yet.
+1. **Preflight.** Run `bun --version`, `node --version`, `git --version`, `gh auth status`, and list the folder. Done when all four answer and the folder lists nothing but editor folders such as `.idea` and, when present, an `.env` file, which step 5 has the human check. Otherwise stop and name what is missing; adopting a project with files is not supported yet.
 
 2. **Questionnaire.** Read `questions.md` in this folder and run it as it says: round 1, the facts, the frontier, round 2. `$ARGUMENTS`, when given, answers D1. Done when every R, D and F row is given, defaulted, derived, skipped or looked up.
 
@@ -31,7 +31,7 @@ Turn an empty folder into a runnable test project with the playbook wired in. Th
    - `.env` is gitignored and read by `playwright.config.ts` alone.
    - To run against another environment, change `TEST_ENV`; every environment's URL is already there.
    - CI gets the same names from the repository's secrets and variables.
-   Done when the human says the file is in place.
+   With an `.env` already in the folder, the human compares it with the shown content and confirms or edits it. Done when the human says the file is in place.
 
 6. **Login page.** Only when R3 named accounts. Take an accessibility snapshot of the base URL with a short Playwright script, `page.locator('body').ariaSnapshot()` plus the test id attributes on the form; the MCP server's browser tools answer only after a planner setup, so they are not used here. Read the username field, the password field and the submit button from the snapshot. Write `src/pages/login.page.ts` from those and a page object for the page R3's after-login state names, register both in `src/fixtures/test.ts`, make `tests/setup/auth.setup.ts` log in through the login page and assert the after-login state R3 gave, and make `tests/seed.spec.ts` open the after-login page. Done when the setup spec has no locator the snapshot did not show, its assertion is the R3 line, and the seed opens the after-login page. Step 7 proves it.
 
