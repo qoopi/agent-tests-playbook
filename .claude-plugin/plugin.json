@@ -1,0 +1,6 @@
+{
+  "name": "agent-tests-playbook",
+  "version": "0.1.0",
+  "description": "Playwright + TypeScript test automation as a team: doors the human types, agents that explore, plan, write, review and debug, and the rules they follow.",
+  "author": { "name": "Oleg Kutafin" }
+}
